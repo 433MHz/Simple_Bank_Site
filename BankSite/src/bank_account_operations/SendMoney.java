@@ -10,7 +10,10 @@ public class SendMoney {
 		UserDatabaseEmulator userReciver;
 		
 		if(CheckIfUserExist.check(reciverName)) {
-			if(userSender.getMoney() > reciverMoney) {
+			if(reciverMoney < 0) {
+				return "You can't send negative value";
+			}
+			else if(userSender.getMoney() > reciverMoney) {
 				userSender.setMoney(userSender.getMoney() - reciverMoney);
 				userReciver = GetUser.get(reciverName);
 				userReciver.setMoney(userReciver.getMoney() + reciverMoney);
