@@ -18,7 +18,7 @@ You have on your account: <%out.print(user.getMoney()); %> USD<br>
 <h1>Add money</h1><br>
 <form action="AddMoney">
 How much money you want to add? <input type="text" name="moneyAdd"> <input type="submit" name="moneyAddButton" value="Send"><br>
-<% out.print(request.getAttribute("infoAdd")); %>
+<% if(request.getAttribute("infoAdd") != null){out.print(request.getAttribute("infoAdd"));} %>
 <br>
 </form>
 
@@ -27,7 +27,7 @@ How much money you want to add? <input type="text" name="moneyAdd"> <input type=
 To who you want send money? (type reciver login) <input type="text" name="reciverNameMoneyTransfer"><br> 
 How much you want send?                          <input type="text" name="moneyAmountMoneyTransfer"><br>
 <input type="submit" name="moneyTransferButton" value="Send"><br>
-<% out.print(request.getAttribute("infoSend")); %>
+<% if(request.getAttribute("infoSend") != null){out.print(request.getAttribute("infoSend"));} %>
 </form>
 
 </body>
