@@ -9,11 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import database.UserDatabaseEmulator;
-import database_operations.CheckIfPasswordIsCorrect;
-import database_operations.CheckIfUserExist;
-import database_operations.GetUser;
+import database_operations.UserOperation;
 
 @WebServlet("/LogInServlet")
 public class LogInServlet extends HttpServlet{
@@ -25,10 +22,10 @@ public void service(HttpServletRequest request, HttpServletResponse response) th
 	String login = request.getParameter("loginText");
 	String password = request.getParameter("passwordText");
 	
-	if(CheckIfUserExist.check(login)) {
-		user = GetUser.get(login);
+	if(UserOperation.isIsDatabase(login)) {
+		user = UserOperation.getObject(login);
 		
-		if(CheckIfPasswordIsCorrect.check(user, password)) {
+		if(UserOperation.isPasswordCorrect(user, password)) {
 			session.setAttribute("user", user);
 			response.sendRedirect("bankAccount.jsp");
 		}

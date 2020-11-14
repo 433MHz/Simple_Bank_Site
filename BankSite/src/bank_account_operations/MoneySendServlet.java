@@ -26,7 +26,7 @@ public void service(HttpServletRequest request, HttpServletResponse response) th
 	userReciver = request.getParameter("reciverNameMoneyTransfer");
 	try {
 	money = Float.parseFloat(request.getParameter("moneyAmountMoneyTransfer"));
-	String operationInfo = SendMoney.send(userSender, money, userReciver);
+	String operationInfo = MoneyOption.send(userSender, money, userReciver);
 	request.setAttribute("infoSend", operationInfo);
 	requestDispatcher.forward(request, response);
 	}
