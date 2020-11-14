@@ -1,3 +1,4 @@
+<%@page import="java.util.LinkedList"%>
 <%@page import="database.UserDatabaseEmulator"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -27,8 +28,13 @@ How much money you want to add? <input type="text" name="moneyAdd"> <input type=
 To who you want send money? (type reciver login) <input type="text" name="reciverNameMoneyTransfer"><br> 
 How much you want send?                          <input type="text" name="moneyAmountMoneyTransfer"><br>
 <input type="submit" name="moneyTransferButton" value="Send"><br>
-<% if(request.getAttribute("infoSend") != null){out.print(request.getAttribute("infoSend"));} %>
+<% if(request.getAttribute("infoSend") != null){out.print(request.getAttribute("infoSend"));} %><br><br>
 </form>
 
+<% for(LinkedList<LinkedList> x : user.getOperationsHistory().get()){
+	out.print(x.toString());
+	out.print("<br>");
+}
+	%>
 </body>
 </html>

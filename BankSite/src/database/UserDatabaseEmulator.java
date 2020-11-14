@@ -1,9 +1,20 @@
 package database;
 
+import history_database.OperationsHistory;
+
 public class UserDatabaseEmulator {
-String name;
-String password;
-float money;
+private String name;
+private String password;
+private float money;
+private OperationsHistory operationsHistory = new OperationsHistory();
+
+public OperationsHistory getOperationsHistory() {
+	return operationsHistory;
+}
+
+public void setOperationsHistory(OperationsHistory operationsHistory) {
+	this.operationsHistory = operationsHistory;
+}
 
 public UserDatabaseEmulator(String login, String password){
 	this.name = login;

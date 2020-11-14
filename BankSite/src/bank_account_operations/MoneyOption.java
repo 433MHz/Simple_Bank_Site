@@ -1,10 +1,17 @@
 package bank_account_operations;
 
+import java.util.LinkedList;
+
 import database.UserDatabaseEmulator;
 import database_operations.UserOperation;
 
 public class MoneyOption {
 	
+	
+	/*
+	 * Add money into user account and return string with information
+	 * about operation status
+	 */
 	public static String add(UserDatabaseEmulator user, float money) {
 		
 		if(money>=0) {
@@ -18,7 +25,9 @@ public class MoneyOption {
 	
 	
 	
-	
+	/*
+	 * Remove money from sender account and add this value to receiver account
+	 */
 	public static String send(UserDatabaseEmulator userSender, float reciverMoney, String reciverName) {
 		UserDatabaseEmulator userReciver;
 		
@@ -30,6 +39,8 @@ public class MoneyOption {
 				userSender.setMoney(userSender.getMoney() - reciverMoney);
 				userReciver = UserOperation.getObject(reciverName);
 				userReciver.setMoney(userReciver.getMoney() + reciverMoney);
+				userSender.getOperationsHistory().putIn(userSender.getName(), userReciver.getName(), reciverMoney, "Sended");
+				userReciver.getOperationsHistory().putIn(userSender.getName(), userReciver.getName(), reciverMoney, "Recived");
 				return "Sended";
 			}
 			else {

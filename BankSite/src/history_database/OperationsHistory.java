@@ -1,0 +1,46 @@
+package history_database;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.LinkedList;
+
+public class OperationsHistory {
+	LinkedList<LinkedList> outer = new LinkedList<LinkedList>();
+	LinkedList<String> inner = new LinkedList<String>();
+	int id = 0;
+	boolean alreadyExecuted = false;
+
+public void putIn(String from, String to, float money, String way) {
+	id++;
+	if(!alreadyExecuted) {
+		inner.add("ID");
+		inner.add("FROM");
+		inner.add("TO");
+		inner.add("MONEY");
+		inner.add("DATE");
+		inner.add("TIME");
+		inner.add("GET/SEND");
+		outer.add(inner);
+		inner = new LinkedList<String>();
+		alreadyExecuted = true;
+	}
+	inner = new LinkedList<String>();
+	inner.add(String.valueOf(id));
+	inner.add(from);
+	inner.add(to);
+	inner.add(String.valueOf(money));
+	LocalDate lc = LocalDate.now();
+	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	inner.add(String.valueOf(lc.format(dtf)));
+	LocalTime lt = LocalTime.now();
+	dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+	inner.add(String.valueOf(lt.format(dtf)));
+	inner.add(way);
+	outer.add(inner);
+}
+
+public LinkedList<LinkedList> get(){
+	return outer;
+}
+}
