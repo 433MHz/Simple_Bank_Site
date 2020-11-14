@@ -1,3 +1,4 @@
+<%@page import="database_operations.UserOperation"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="database.UserDatabaseEmulator"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -31,7 +32,7 @@ How much you want send?                          <input type="text" name="moneyA
 <% if(request.getAttribute("infoSend") != null){out.print(request.getAttribute("infoSend"));} %><br><br>
 </form>
 
-<% for(LinkedList<LinkedList> x : user.getOperationsHistory().get()){
+<% for(LinkedList<LinkedList> x : (LinkedList<LinkedList>) UserOperation.getOperationsHistory(user)){
 	out.print(x.toString());
 	out.print("<br>");
 }

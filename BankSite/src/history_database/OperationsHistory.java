@@ -6,10 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 
 public class OperationsHistory {
-	LinkedList<LinkedList> outer = new LinkedList<LinkedList>();
-	LinkedList<String> inner = new LinkedList<String>();
-	int id = 0;
-	boolean alreadyExecuted = false;
+	private LinkedList<LinkedList> outer = new LinkedList<LinkedList>();
+	private LinkedList<String> inner = new LinkedList<String>();
+	private int id = 0;
+	private boolean alreadyExecuted = false;
 
 public void putIn(String from, String to, float money, String way) {
 	id++;

@@ -1,6 +1,7 @@
 package database_operations;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import database.UserDatabaseEmulator;
 import database.UserHashMap;
@@ -11,7 +12,7 @@ public class UserOperation {
 	 * If user login exist in database then return true, if not
 	 * then create new user and return false
 	 */
-	public static boolean add (String login, String password) {
+	public static boolean add(String login, String password) {
 		if(UserOperation.isIsDatabase(login)) {return true;}
 		else {
 			UserDatabaseEmulator temporaryUser = new UserDatabaseEmulator(login, password);
@@ -58,6 +59,61 @@ public class UserOperation {
 		}
 	}
 	
+	
+	
+	/*
+	 * Remove money from sender account and add this value to receiver account
+	 */
+	public static String send(UserDatabaseEmulator userSender, float reciverMoney, String reciverName) {
+UserDatabaseEmulator userReciver;
+		
+		if(UserOperation.isIsDatabase(reciverName)) {
+			if(reciverMoney < 0) {
+				return "You can't send negative value";
+			}
+			else if(userSender.getMoney() > reciverMoney) {
+				userSender.setMoney(userSender.getMoney() - reciverMoney);
+				userReciver = UserOperation.getObject(reciverName);
+				userReciver.setMoney(userReciver.getMoney() + reciverMoney);
+				userSender.getOperationsHistory().putIn(userSender.getName(), userReciver.getName(), reciverMoney, "Sended");
+				userReciver.getOperationsHistory().putIn(userSender.getName(), userReciver.getName(), reciverMoney, "Recived");
+				return "Sended";
+			}
+			else {
+				return "You don't have enought money balance on your account";
+			}
+		}
+		
+		else {
+			return "User name not exist";
+		}
+	}
+	
+	
+	
+	/*
+	 * Add money into user account and return string with information
+	 * about operation status
+	 */
+	public static String addMoney(UserDatabaseEmulator user, float money) {
+		
+		if(money>=0) {
+			user.setMoney(user.getMoney()+money);
+			return "Added succesly";
+		}
+		else {
+			return "Value cannot be lesser than 0";
+		}
+	}
+		
+		
+		
+		/*
+		 * Returns LinkedList from UserDatabaseEmulator object that have OperationsHistory object inside
+		 */
+		public static LinkedList<LinkedList> getOperationsHistory(UserDatabaseEmulator user) {
+			return user.getOperationsHistory().get();
+		}
 	
 }
 
