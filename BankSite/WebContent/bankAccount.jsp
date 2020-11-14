@@ -8,7 +8,7 @@
 <head>
 	<title>Bank Account</title>
 </head>
-<body>
+<body style="text-align: center; padding: 70px;">
 <%! UserDatabaseEmulator user; %>
 <%user = (UserDatabaseEmulator) session.getAttribute("user"); %>
 
@@ -27,15 +27,16 @@ How much money you want to add? <input type="text" name="moneyAdd"> <input type=
 <h1>Money transfer</h1><br>
 <form action="SendMoney" method="post">
 To who you want send money? (type reciver login) <input type="text" name="reciverNameMoneyTransfer"><br> 
-How much you want send?                          <input type="text" name="moneyAmountMoneyTransfer"><br>
+How much you want send?                          <input type="text" name="moneyAmountMoneyTransfer"><br><br>
 <input type="submit" name="moneyTransferButton" value="Send"><br>
 <% if(request.getAttribute("infoSend") != null){out.print(request.getAttribute("infoSend"));} %><br><br>
 </form>
 
-<% for(LinkedList<LinkedList> x : (LinkedList<LinkedList>) UserOperation.getOperationsHistory(user)){
-	out.print(x.toString());
-	out.print("<br>");
-}
-	%>
+<form action="operationsHistory.jsp" method="post">
+	<input type="submit" value="Go to operations history"><br><br>
+</form>
+<form action="index.jsp" method="post">
+	<input type="submit" value="Logout">
+</form>
 </body>
 </html>
