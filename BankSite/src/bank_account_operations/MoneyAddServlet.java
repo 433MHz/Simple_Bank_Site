@@ -23,7 +23,7 @@ public class MoneyAddServlet extends HttpServlet{
 		
 		try {
 			money = Float.parseFloat(request.getParameter("moneyAdd"));
-			String addOperationInfo = AddMoney.add(user, money);
+			String addOperationInfo = MoneyOption.add(user, money);
 			request.setAttribute("infoAdd", addOperationInfo);
 			requestDispatcher.forward(request, response);
 		}
