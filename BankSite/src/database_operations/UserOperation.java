@@ -2,7 +2,6 @@ package database_operations;
 
 import java.util.HashMap;
 import java.util.LinkedList;
-
 import database.UserDatabaseEmulator;
 import database.UserHashMap;
 
