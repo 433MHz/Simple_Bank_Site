@@ -1,8 +1,7 @@
 package bank_account_operations;
 
 import database.UserDatabaseEmulator;
-import database_operations.CheckIfUserExist;
-import database_operations.GetUser;
+import database_operations.UserOperation;
 
 public class MoneyOption {
 	
@@ -23,13 +22,13 @@ public class MoneyOption {
 	public static String send(UserDatabaseEmulator userSender, float reciverMoney, String reciverName) {
 		UserDatabaseEmulator userReciver;
 		
-		if(CheckIfUserExist.check(reciverName)) {
+		if(UserOperation.isIsDatabase(reciverName)) {
 			if(reciverMoney < 0) {
 				return "You can't send negative value";
 			}
 			else if(userSender.getMoney() > reciverMoney) {
 				userSender.setMoney(userSender.getMoney() - reciverMoney);
-				userReciver = GetUser.get(reciverName);
+				userReciver = UserOperation.getObject(reciverName);
 				userReciver.setMoney(userReciver.getMoney() + reciverMoney);
 				return "Sended";
 			}

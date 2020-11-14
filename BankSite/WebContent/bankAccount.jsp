@@ -16,14 +16,14 @@ You have on your account: <%out.print(user.getMoney()); %> USD<br>
 <br>
 
 <h1>Add money</h1><br>
-<form action="AddMoney">
+<form action="AddMoney" method="post">
 How much money you want to add? <input type="text" name="moneyAdd"> <input type="submit" name="moneyAddButton" value="Send"><br>
 <% if(request.getAttribute("infoAdd") != null){out.print(request.getAttribute("infoAdd"));} %>
 <br>
 </form>
 
 <h1>Money transfer</h1><br>
-<form action="SendMoney">
+<form action="SendMoney" method="post">
 To who you want send money? (type reciver login) <input type="text" name="reciverNameMoneyTransfer"><br> 
 How much you want send?                          <input type="text" name="moneyAmountMoneyTransfer"><br>
 <input type="submit" name="moneyTransferButton" value="Send"><br>
