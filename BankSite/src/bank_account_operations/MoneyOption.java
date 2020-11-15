@@ -1,7 +1,5 @@
 package bank_account_operations;
 
-import java.util.LinkedList;
-
 import database.UserDatabaseEmulator;
 import database_operations.UserOperation;
 
