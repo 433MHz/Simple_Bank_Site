@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import database.UserDatabaseEmulator;
+import used_by_all.User;
 
 @WebServlet("/SendMoney")
 public class MoneySendServlet extends HttpServlet{
@@ -18,11 +18,11 @@ public void service(HttpServletRequest request, HttpServletResponse response) th
 	HttpSession session = request.getSession();
 	RequestDispatcher requestDispatcher = request.getRequestDispatcher("bankAccount.jsp");
 	
-	UserDatabaseEmulator userSender;
+	User userSender;
 	String userReciver;
 	Float money;
 	
-	userSender = (UserDatabaseEmulator) session.getAttribute("user");
+	userSender = (User) session.getAttribute("user");
 	userReciver = request.getParameter("reciverNameMoneyTransfer");
 	try {
 	money = Float.parseFloat(request.getParameter("moneyAmountMoneyTransfer"));

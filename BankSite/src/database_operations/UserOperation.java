@@ -2,8 +2,9 @@ package database_operations;
 
 import java.util.HashMap;
 import java.util.LinkedList;
-import database.UserDatabaseEmulator;
-import database.UserHashMap;
+
+import used_by_all.User;
+import used_by_all.UserHashMap;
 
 public class UserOperation {
 	
@@ -14,7 +15,7 @@ public class UserOperation {
 	public static boolean add(String login, String password) {
 		if(UserOperation.isIsDatabase(login)) {return true;}
 		else {
-			UserDatabaseEmulator temporaryUser = new UserDatabaseEmulator(login, password);
+			User temporaryUser = new User(login, password);
 			UserHashMap.add(login, temporaryUser);
 			return false;}
 	}
@@ -26,7 +27,7 @@ public class UserOperation {
 	 * database, return true if yes, return false
 	 * if not.
 	 */
-	public static boolean isPasswordCorrect(UserDatabaseEmulator user, String password){
+	public static boolean isPasswordCorrect(User user, String password){
 		if(user.getPassword().equals(password))	{return true;}
 		
 		else {return false;}}
@@ -46,9 +47,9 @@ public class UserOperation {
 	/*
 	 * Get UserDatabaseEmulator object
 	 */
-	public static UserDatabaseEmulator getObject(String login) {
-		UserDatabaseEmulator user;
-		HashMap<String, UserDatabaseEmulator> hashmap = UserHashMap.getUsersHashMap();
+	public static User getObject(String login) {
+		User user;
+		HashMap<String, User> hashmap = UserHashMap.getUsersHashMap();
 		if(UserOperation.isIsDatabase(login)) {
 			user = hashmap.get(login);
 			return user;
@@ -63,8 +64,8 @@ public class UserOperation {
 	/*
 	 * Remove money from sender account and add this value to receiver account
 	 */
-	public static String send(UserDatabaseEmulator userSender, float reciverMoney, String reciverName) {
-UserDatabaseEmulator userReciver;
+	public static String send(User userSender, float reciverMoney, String reciverName) {
+User userReciver;
 		
 		if(UserOperation.isIsDatabase(reciverName)) {
 			if(reciverMoney < 0) {
@@ -94,7 +95,7 @@ UserDatabaseEmulator userReciver;
 	 * Add money into user account and return string with information
 	 * about operation status
 	 */
-	public static String addMoney(UserDatabaseEmulator user, float money) {
+	public static String addMoney(User user, float money) {
 		
 		if(money>=0) {
 			user.setMoney(user.getMoney()+money);
@@ -110,7 +111,7 @@ UserDatabaseEmulator userReciver;
 		/*
 		 * Returns LinkedList from UserDatabaseEmulator object that have OperationsHistory object inside
 		 */
-		public static LinkedList<LinkedList> getOperationsHistory(UserDatabaseEmulator user) {
+		public static LinkedList<LinkedList> getOperationsHistory(User user) {
 			return user.getOperationsHistory().get();
 		}
 	

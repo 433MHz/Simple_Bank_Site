@@ -1,4 +1,4 @@
-package login_register_redirector;
+package register_new_user;
 
 import java.io.IOException;
 
@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import database_operations.UserOperation;
+import used_by_all.DataHolder;
 
 @WebServlet("/RegisterServlet")
 public class RegisterSerlvet extends HttpServlet{
@@ -16,17 +17,8 @@ public class RegisterSerlvet extends HttpServlet{
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
 		
-		/*
-		 * If user name exist in database, forward to index.jsp and show "User login is in use, try other name"
-		 * If user created successfully, forward to index.jsp and show "User successfully created"
-		 */
-		
-		if(UserOperation.add(request.getParameter("loginText"), request.getParameter("passwordText"))) {
-			request.setAttribute("indexInfo", "User login is in use, try other name");
-		}
-		else {
-			request.setAttribute("indexInfo", "User successfully created");
-		}
+		DataHolder dataHolder = createUser.addNew(request.getParameter("loginText"), request.getParameter("passwordText"));
+		request.setAttribute("indexInfo", dataHolder.getMessage());
 		requestDispatcher.forward(request, response);
 	}
 }

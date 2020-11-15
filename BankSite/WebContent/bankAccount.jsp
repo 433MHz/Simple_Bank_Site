@@ -1,6 +1,6 @@
 <%@page import="database_operations.UserOperation"%>
 <%@page import="java.util.LinkedList"%>
-<%@page import="database.UserDatabaseEmulator"%>
+<%@page import="used_by_all.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -9,8 +9,10 @@
 	<title>Bank Account</title>
 </head>
 <body style="text-align: center; padding: 70px;">
-<%! UserDatabaseEmulator user; %>
-<%user = (UserDatabaseEmulator) session.getAttribute("user"); %>
+<%!User user;%>
+<%
+	user = (User) session.getAttribute("user");
+%>
 
 
 Hello <%out.print(user.getName()); %> <br>

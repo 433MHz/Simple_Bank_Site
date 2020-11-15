@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import database.UserDatabaseEmulator;
+import used_by_all.User;
 
 @WebServlet("/AddMoney")
 public class MoneyAddServlet extends HttpServlet{
@@ -18,7 +18,7 @@ public class MoneyAddServlet extends HttpServlet{
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		float money;
-		UserDatabaseEmulator user = (UserDatabaseEmulator) session.getAttribute("user");
+		User user = (User) session.getAttribute("user");
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("bankAccount.jsp");
 		
 		try {
