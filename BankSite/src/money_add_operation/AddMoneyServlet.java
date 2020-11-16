@@ -23,13 +23,8 @@ public class AddMoneyServlet extends HttpServlet{
 		DataHolder dataHolder;
 		dataHolder = AddMoney.add(request.getParameter("moneyAddTextArea"), (User)session.getAttribute("user"));
 		
-		if(dataHolder.getIsDone()) {
-			request.setAttribute("infoAdd", dataHolder.getMessage());
-		}
-		else {
-			request.setAttribute("infoAdd", dataHolder.getMessage());
-		}
 		
+		request.setAttribute("infoAdd", dataHolder.getMessage());
 		requestDispatcher.forward(request, response);
 	}
 }

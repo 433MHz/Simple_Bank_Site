@@ -20,7 +20,7 @@ You have on your account: <%out.print(user.getMoney()); %> USD<br>
 
 <h1>Add money</h1><br>
 <form action="AddMoney" method="post">
-How much money you want to add? <input type="text" name="moneyAddTextArea"> <input type="submit" name="moneyAddButton" value="Send"><br>
+How much money you want to add? <input type="text" name="moneyAddTextArea"> <input type="submit" name="moneyAddButton" value="Add"><br>
 <% if(request.getAttribute("infoAdd") != null){out.print(request.getAttribute("infoAdd"));} %>
 <br>
 </form>
