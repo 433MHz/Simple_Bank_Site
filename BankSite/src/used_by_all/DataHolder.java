@@ -1,8 +1,8 @@
 package used_by_all;
 
 public class DataHolder {
-private String message;
-private boolean isDone;
+protected String message;
+protected boolean isDone;
 
 public void set(String message, boolean isDone){
 	this.message = message;

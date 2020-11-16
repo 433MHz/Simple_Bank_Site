@@ -14,25 +14,8 @@ import used_by_all.User;
 
 @WebServlet("/SendMoney")
 public class MoneySendServlet extends HttpServlet{
-public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	HttpSession session = request.getSession();
-	RequestDispatcher requestDispatcher = request.getRequestDispatcher("bankAccount.jsp");
 	
-	User userSender;
-	String userReciver;
-	Float money;
-	
-	userSender = (User) session.getAttribute("user");
-	userReciver = request.getParameter("reciverNameMoneyTransfer");
-	try {
-	money = Float.parseFloat(request.getParameter("moneyAmountMoneyTransfer"));
-	String operationInfo = MoneyOption.send(userSender, money, userReciver);
-	request.setAttribute("infoSend", operationInfo);
-	requestDispatcher.forward(request, response);
+	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
-	catch (Exception e) {
-		request.setAttribute("infoSend", "Value must be a number");
-		requestDispatcher.forward(request, response);
-	}
-}
 }

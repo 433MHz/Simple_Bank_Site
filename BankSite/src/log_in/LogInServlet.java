@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import database_operations.UserOperation;
 import used_by_all.DataHolder;
 import used_by_all.User;
 import used_by_all.UserHashMap;
@@ -20,10 +19,9 @@ public class LogInServlet extends HttpServlet{
 public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 	HttpSession session = request.getSession();
-	DataHolder dataHolder = LogIn.logIn(request.getParameter("loginText"), request.getParameter("passwordText"));	//Get dataHolder object from LogIn
+	UserReturn dataHolder = LogIn.logIn(request.getParameter("loginText"), request.getParameter("passwordText"));	//Get dataHolder object from LogIn
 	if(dataHolder.getIsDone()) {
-		User user = UserHashMap.getUsersHashMap().get(request.getParameter("loginText"));			//Get user with login as in loginText String
-		session.setAttribute("user", user);
+		session.setAttribute("user", dataHolder.getUser());
 		response.sendRedirect("bankAccount.jsp");
 	}
 	else {

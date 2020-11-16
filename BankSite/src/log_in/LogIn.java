@@ -5,13 +5,13 @@ import used_by_all.User;
 import used_by_all.UserHashMap;
 
 public class LogIn {
-public static DataHolder logIn(String login, String password){
-	DataHolder dataHolder = new DataHolder();
+public static UserReturn logIn(String login, String password){
+	UserReturn dataHolder = new UserReturn();
 	
 	if(UserHashMap.getUsersHashMap().containsKey(login)) {
 	User user = UserHashMap.getUsersHashMap().get(login);
 		if(user.getPassword() == password) {
-			dataHolder.set("LoggedIn", true);
+			dataHolder.set("LoggedIn", user, true);
 		}
 		
 		else {
