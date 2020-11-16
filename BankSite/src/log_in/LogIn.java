@@ -1,16 +1,17 @@
 package log_in;
 
 import used_by_all.DataHolder;
+import used_by_all.DataHolderUserExtended;
 import used_by_all.User;
 import used_by_all.UserHashMap;
 
 public class LogIn {
-public static UserReturn logIn(String login, String password){
-	UserReturn dataHolder = new UserReturn();
+public static DataHolderUserExtended logIn(String login, String password){
+	DataHolderUserExtended dataHolder = new DataHolderUserExtended();
 	
 	if(UserHashMap.getUsersHashMap().containsKey(login)) {
 	User user = UserHashMap.getUsersHashMap().get(login);
-		if(user.getPassword() == password) {
+		if(user.getPassword().equals(password)) {
 			dataHolder.set("LoggedIn", user, true);
 		}
 		

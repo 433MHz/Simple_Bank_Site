@@ -1,4 +1,3 @@
-<%@page import="database_operations.UserOperation"%>
 <%@page import="java.util.LinkedList"%>
 <%@page import="used_by_all.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"

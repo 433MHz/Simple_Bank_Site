@@ -1,4 +1,4 @@
-package bank_account_operations;
+package money_send_operation;
 
 import java.io.IOException;
 
@@ -12,9 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import used_by_all.User;
 
-@WebServlet("/AddMoney")
-public class MoneyAddServlet extends HttpServlet{
-
+@WebServlet("/SendMoney")
+public class MoneySendServlet extends HttpServlet{
+	
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}

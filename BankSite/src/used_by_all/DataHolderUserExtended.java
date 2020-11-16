@@ -1,9 +1,6 @@
-package log_in;
+package used_by_all;
 
-import used_by_all.DataHolder;
-import used_by_all.User;
-
-public class UserReturn extends DataHolder{
+public class DataHolderUserExtended extends DataHolder{
 private User user = new User();
 
 public User getUser() {
