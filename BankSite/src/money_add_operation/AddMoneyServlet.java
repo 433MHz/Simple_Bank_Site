@@ -14,16 +14,15 @@ import used_by_all.DataHolder;
 import used_by_all.User;
 
 @WebServlet("/AddMoney")
-public class AddMoneyServlet extends HttpServlet{
+public class AddMoneyServlet extends HttpServlet {
 
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("bankAccount.jsp");
 		HttpSession session = request.getSession();
 		DataHolder dataHolder;
-		dataHolder = AddMoney.add(request.getParameter("moneyAddTextArea"), (User)session.getAttribute("user"));
-		
-		
+		dataHolder = AddMoney.add(request.getParameter("moneyAddTextArea"), (User) session.getAttribute("user"));
+
 		request.setAttribute("infoAdd", dataHolder.getMessage());
 		requestDispatcher.forward(request, response);
 	}

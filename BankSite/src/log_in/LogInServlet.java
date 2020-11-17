@@ -16,19 +16,19 @@ import used_by_all.User;
 import used_by_all.UserHashMap;
 
 @WebServlet("/LogInServlet")
-public class LogInServlet extends HttpServlet{
-public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-	HttpSession session = request.getSession();
-	DataHolderUserExtended dataHolder = LogIn.logIn(request.getParameter("loginText"), request.getParameter("passwordText"));	//Get dataHolder object from LogIn
-	if(dataHolder.getIsDone()) {
-		session.setAttribute("user", dataHolder.getUser());
-		response.sendRedirect("bankAccount.jsp");
+public class LogInServlet extends HttpServlet {
+	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+		DataHolderUserExtended dataHolder = LogIn.logIn(request.getParameter("loginText"),
+				request.getParameter("passwordText")); // Get dataHolder object from LogIn
+		if (dataHolder.getIsDone()) {
+			session.setAttribute("user", dataHolder.getUser());
+			response.sendRedirect("bankAccount.jsp");
+		} else {
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
+			request.setAttribute("indexInfo", dataHolder.getMessage());
+			requestDispatcher.forward(request, response);
+		}
 	}
-	else {
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
-		request.setAttribute("indexInfo", dataHolder.getMessage());
-		requestDispatcher.forward(request, response);
-	}
-}
 }

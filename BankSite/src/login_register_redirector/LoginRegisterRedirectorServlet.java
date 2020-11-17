@@ -10,22 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/LoginRegisterRedirectorServlet")
-public class LoginRegisterRedirectorServlet extends HttpServlet{
+public class LoginRegisterRedirectorServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		
+
 		/*
-		 * If login button was clicked in index.jsp
-		 * then go to LogInServlet. If register button then go to RegisterServlet.
+		 * If login button was clicked in index.jsp then go to LogInServlet. If register
+		 * button then go to RegisterServlet.
 		 */
-		if(request.getParameter("LoginButton") != null) {
+		if (request.getParameter("LoginButton") != null) {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("LogInServlet");
 			requestDispatcher.forward(request, response);
-		}
-		else if(request.getParameter("RegisterButton") != null) {
+		} else if (request.getParameter("RegisterButton") != null) {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("RegisterServlet");
 			requestDispatcher.forward(request, response);
 		}
 	}
-	
+
 }

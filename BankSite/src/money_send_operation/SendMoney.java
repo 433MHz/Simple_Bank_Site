@@ -24,14 +24,19 @@ public class SendMoney {
 
 			if (sender.getMoney() >= money) {
 				if (money >= 0) {
-					sender.setMoney(sender.getMoney() - money);
-					reciver.setMoney(reciver.getMoney() + money);
-					operationHistory = sender.getOperationsHistory();
-					operationHistory.putIn(sender.getName(), reciver.getName(), money, "SEND");
-					operationHistory = reciver.getOperationsHistory();
-					operationHistory.putIn(sender.getName(), reciver.getName(), money, "GET");
-					dataHolder.set("Sended", true);
-					return dataHolder;
+					if (money >= 1000000000) {
+						dataHolder.set("Value cannot be greater than 1.000.000.000 USD", false);
+						return dataHolder;
+					} else {
+						sender.setMoney(sender.getMoney() - money);
+						reciver.setMoney(reciver.getMoney() + money);
+						operationHistory = sender.getOperationsHistory();
+						operationHistory.putIn(sender.getName(), reciver.getName(), money, "SEND");
+						operationHistory = reciver.getOperationsHistory();
+						operationHistory.putIn(sender.getName(), reciver.getName(), money, "GET");
+						dataHolder.set("Sended", true);
+						return dataHolder;
+					}
 				} else {
 					dataHolder.set("You can't send negative value", false);
 					return dataHolder;
