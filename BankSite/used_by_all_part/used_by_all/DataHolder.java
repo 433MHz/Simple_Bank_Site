@@ -1,5 +1,6 @@
 package used_by_all;
 
+
 public class DataHolder {
 	protected String message;
 	protected boolean isDone;

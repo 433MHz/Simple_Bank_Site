@@ -1,5 +1,6 @@
 package used_by_all;
 
+
 import java.util.HashMap;
 
 public class UserHashMap {

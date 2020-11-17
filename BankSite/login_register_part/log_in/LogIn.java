@@ -1,6 +1,5 @@
 package log_in;
 
-import used_by_all.DataHolder;
 import used_by_all.DataHolderUserExtended;
 import used_by_all.User;
 import used_by_all.UserHashMap;

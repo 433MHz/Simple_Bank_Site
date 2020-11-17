@@ -1,5 +1,6 @@
 package used_by_all;
 
+
 public class DataHolderUserExtended extends DataHolder {
 	private User user = new User();
 
