@@ -1,5 +1,7 @@
 package used_by_all;
 
+import operations_history.OperationsHistory;
+
 public class User {
 private String name;
 private String password;

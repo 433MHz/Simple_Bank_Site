@@ -1,5 +1,6 @@
 package money_send_operation;
 
+import operations_history.OperationsHistory;
 import used_by_all.DataHolder;
 import used_by_all.User;
 import used_by_all.UserHashMap;
@@ -8,30 +9,39 @@ public class SendMoney {
 
 	public static DataHolder send(User sender, String reciverName, String value) {
 		DataHolder dataHolder = new DataHolder();
+		OperationsHistory operationHistory;
 		User reciver;
 		float money;
-		
-		if(reciverName.equals(UserHashMap.getUsersHashMap().get(reciverName).getName())) {
+		if (UserHashMap.getUsersHashMap().containsKey(reciverName)) {
 			reciver = UserHashMap.getUsersHashMap().get(reciverName);
-			
-			try {money = Float.parseFloat(value);}
-			catch (Exception e) {
+
+			try {
+				money = Float.parseFloat(value);
+			} catch (Exception e) {
 				dataHolder.set("Value must be a number", false);
 				return dataHolder;
-				}
-			
-			if(sender.getMoney() >= money) {
-				sender.setMoney(sender.getMoney() - money);
-				reciver.setMoney(reciver.getMoney() + money);
-				dataHolder.set("Sended", true);
-				return dataHolder;
 			}
-			else {
+
+			if (sender.getMoney() >= money) {
+				if (money >= 0) {
+					sender.setMoney(sender.getMoney() - money);
+					reciver.setMoney(reciver.getMoney() + money);
+					operationHistory = sender.getOperationsHistory();
+					operationHistory.putIn(sender.getName(), reciver.getName(), money, "SEND");
+					operationHistory = reciver.getOperationsHistory();
+					operationHistory.putIn(sender.getName(), reciver.getName(), money, "GET");
+					dataHolder.set("Sended", true);
+					return dataHolder;
+				} else {
+					dataHolder.set("You can't send negative value", false);
+					return dataHolder;
+				}
+			} else {
 				dataHolder.set("You don't have enought money", false);
 				return dataHolder;
 			}
-		}
-		else {
+
+		} else {
 			dataHolder.set("Reciver name don't exist", false);
 			return dataHolder;
 		}

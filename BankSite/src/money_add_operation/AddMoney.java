@@ -1,5 +1,6 @@
 package money_add_operation;
 
+import operations_history.OperationsHistory;
 import used_by_all.DataHolder;
 import used_by_all.User;
 
@@ -8,6 +9,7 @@ public static DataHolder add(String value, User user) {
 	
 	float money;
 	DataHolder dataHolder = new DataHolder();
+	OperationsHistory operationHistory;
 	
 	try {money = Float.parseFloat(value);}
 	catch (Exception e) {
@@ -29,7 +31,8 @@ public static DataHolder add(String value, User user) {
 			float userMoney = user.getMoney();
 			userMoney = userMoney + money;
 			user.setMoney(userMoney);
-			
+			operationHistory = user.getOperationsHistory();
+			operationHistory.putIn(userMoney);
 			dataHolder.set("Added", true);
 			return dataHolder;
 		}
