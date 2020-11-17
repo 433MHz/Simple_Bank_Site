@@ -1,26 +1,13 @@
-package database;
+package used_by_all;
 
-import history_database.OperationsHistory;
+import operations_history.OperationsHistory;
 
-public class UserDatabaseEmulator {
+public class User {
 private String name;
 private String password;
 private float money;
 private OperationsHistory operationsHistory = new OperationsHistory();
 
-public OperationsHistory getOperationsHistory() {
-	return operationsHistory;
-}
-
-public void setOperationsHistory(OperationsHistory operationsHistory) {
-	this.operationsHistory = operationsHistory;
-}
-
-public UserDatabaseEmulator(String login, String password){
-	this.name = login;
-	this.password = password;
-	this.money = 0;
-}
 
 public String getName() {
 	return name;
@@ -40,6 +27,10 @@ public float getMoney() {
 public void setMoney(float money) {
 	this.money = money;
 }
-
-
+public OperationsHistory getOperationsHistory() {
+	return operationsHistory;
+}
+public void setOperationsHistory(OperationsHistory operationsHistory) {
+	this.operationsHistory = operationsHistory;
+}
 }
