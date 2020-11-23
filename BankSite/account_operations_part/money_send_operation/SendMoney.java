@@ -1,9 +1,10 @@
 package money_send_operation;
 
 import operations_history.OperationsHistory;
+import sqlDatabase.GetUserDAO;
+import sqlDatabase.IsUserDAO;
 import used_by_all.DataHolder;
 import used_by_all.User;
-import used_by_all.UserHashMap;
 
 public class SendMoney {
 
@@ -12,8 +13,8 @@ public class SendMoney {
 		OperationsHistory operationHistory;
 		User reciver;
 		float money;
-		if (UserHashMap.getUsersHashMap().containsKey(reciverName)) {
-			reciver = UserHashMap.getUsersHashMap().get(reciverName);
+		if (IsUserDAO.check(reciverName)) {
+			reciver = GetUserDAO.get(reciverName);
 
 			try {
 				money = Float.parseFloat(value);

@@ -1,8 +1,9 @@
 package register_new_user;
 
+import sqlDatabase.AddUserDAO;
+import sqlDatabase.IsUserDAO;
 import used_by_all.DataHolder;
 import used_by_all.User;
-import used_by_all.UserHashMap;
 
 public class createUser {
 	public static DataHolder addNew(String login, String password) {
@@ -13,11 +14,11 @@ public class createUser {
 			if (login.length() <= 30) {
 				if (password.length() >= 6) {
 					if (password.length() <= 30) {
-						if (!UserHashMap.getUsersHashMap().containsKey(login)) {
+						if (!IsUserDAO.check(login)) {
 							user.setName(login);
 							user.setPassword(password);
 							user.setMoney(0);
-							UserHashMap.addUser(user);
+							AddUserDAO.add(user);
 							dataHolder.set("User created", true);
 							return dataHolder;
 						} else {

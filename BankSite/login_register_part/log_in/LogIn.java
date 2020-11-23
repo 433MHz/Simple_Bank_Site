@@ -1,15 +1,16 @@
 package log_in;
 
+import sqlDatabase.GetUserDAO;
+import sqlDatabase.IsUserDAO;
 import used_by_all.DataHolderUserExtended;
 import used_by_all.User;
-import used_by_all.UserHashMap;
 
 public class LogIn {
 	public static DataHolderUserExtended logIn(String login, String password) {
 		DataHolderUserExtended dataHolder = new DataHolderUserExtended();
 
-		if (UserHashMap.getUsersHashMap().containsKey(login)) {
-			User user = UserHashMap.getUsersHashMap().get(login);
+		if (IsUserDAO.check(login)) {
+			User user = GetUserDAO.get(login);
 			if (user.getPassword().equals(password)) {
 				dataHolder.set("LoggedIn", user, true);
 			}
