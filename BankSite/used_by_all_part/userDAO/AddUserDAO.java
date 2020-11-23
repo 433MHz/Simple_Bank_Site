@@ -1,7 +1,8 @@
-package sqlDatabase;
+package userDAO;
 
 import java.sql.*;
 
+import AllDAO.ConnectInfo;
 import used_by_all.User;
 
 public class AddUserDAO {
@@ -12,7 +13,7 @@ public class AddUserDAO {
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection(DatabaseConnectInfo.url, DatabaseConnectInfo.userName, DatabaseConnectInfo.password);
+			Connection con = DriverManager.getConnection(ConnectInfo.url, ConnectInfo.userName, ConnectInfo.password);
 			
 			PreparedStatement st = con.prepareStatement(query);
 			st.setString(1, user.getName());

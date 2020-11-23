@@ -1,9 +1,9 @@
 package register_new_user;
 
-import sqlDatabase.AddUserDAO;
-import sqlDatabase.IsUserDAO;
 import used_by_all.DataHolder;
 import used_by_all.User;
+import userDAO.AddUserDAO;
+import userDAO.IsUserDAO;
 
 public class createUser {
 	public static DataHolder addNew(String login, String password) {

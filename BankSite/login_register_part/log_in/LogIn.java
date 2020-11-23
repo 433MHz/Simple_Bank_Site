@@ -1,9 +1,9 @@
 package log_in;
 
-import sqlDatabase.GetUserDAO;
-import sqlDatabase.IsUserDAO;
 import used_by_all.DataHolderUserExtended;
 import used_by_all.User;
+import userDAO.GetUserDAO;
+import userDAO.IsUserDAO;
 
 public class LogIn {
 	public static DataHolderUserExtended logIn(String login, String password) {

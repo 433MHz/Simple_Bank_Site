@@ -1,10 +1,10 @@
 package money_send_operation;
 
 import operations_history.OperationsHistory;
-import sqlDatabase.GetUserDAO;
-import sqlDatabase.IsUserDAO;
 import used_by_all.DataHolder;
 import used_by_all.User;
+import userDAO.GetUserDAO;
+import userDAO.IsUserDAO;
 
 public class SendMoney {
 

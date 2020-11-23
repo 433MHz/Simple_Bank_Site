@@ -1,6 +1,8 @@
-package sqlDatabase;
+package userDAO;
 
 import java.sql.*;
+
+import AllDAO.ConnectInfo;
 
 public class IsUserDAO {
 
@@ -9,8 +11,8 @@ public class IsUserDAO {
 		boolean res = false;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection(DatabaseConnectInfo.url, DatabaseConnectInfo.userName,
-					DatabaseConnectInfo.password);
+			Connection con = DriverManager.getConnection(ConnectInfo.url, ConnectInfo.userName,
+					ConnectInfo.password);
 			Statement st = con.createStatement();
 			ResultSet rs = st.executeQuery(query);
 			rs.next();
